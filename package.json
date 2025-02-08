@@ -1,0 +1,10 @@
+{
+  "name": "Dashboard",
+  "version": "1.0.0",
+  "main": "index.html",
+  "author": "luanan",
+  "license": "MIT",
+  "dependencies": {
+    "tsc": "^2.0.4"
+  }
+}
