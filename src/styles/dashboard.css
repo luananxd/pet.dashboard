@@ -23,8 +23,6 @@
 .block__chart--pie {
   width: 200px;
   aspect-ratio: 1 / 1;
-  background-color: lightgray;
-  border-radius: 50%;
 }
 
 .block__wrapper {
