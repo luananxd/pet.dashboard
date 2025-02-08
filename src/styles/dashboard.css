@@ -1,0 +1,67 @@
+.dashboard {
+  margin: 0 auto;
+  padding: 40px 0;
+  width: 1000px;
+}
+
+/* Block */
+
+.block {
+  position: relative;
+  padding: 20px;
+  border-radius: var(--border-s);
+  box-shadow: 0 0 10px 0 var(--blue-shadow);
+  transform-origin: center center;
+  transition: 300ms ease;
+}
+
+.block:hover {
+  box-shadow: 0 0 15px 0 var(--blue-shadow);
+  transform: scale(1.025);
+}
+
+.block__chart--pie {
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  background-color: lightgray;
+  border-radius: 50%;
+}
+
+.block__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 20px;
+}
+
+.block .table {
+  flex-grow: 1;
+  border: 1px solid var(--gray-1);
+  border-radius: var(--border-s);
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.block .table thead {
+  background-color: var(--gray-1);
+  font-weight: 700;
+}
+
+.block .table td {
+  padding: 10px 5px;
+}
+
+.block .table tr {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 30px 1fr 120px 120px;
+  border-bottom: 1px solid var(--gray-1);
+}
+
+.block .table__color {
+  display: block;
+  width: 20px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--blue);
+  border-radius: 50%;
+}

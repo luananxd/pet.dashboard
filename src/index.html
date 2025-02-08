@@ -4,9 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../public/favicons/favicon_light.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../src/styles/index.css">
   <title>Gamer dashboard</title>
 </head>
 <body>
-  <main class="dashboard"></main>
+  <main class="dashboard">
+    <h1 class="dashboard__title">Gamer dashboard</h1>
+
+    <div class="dashboard__block block">
+      <h2 class="block__title">Your favorite games</h2>
+      <div class="block__wrapper">
+        <div class="block__chart block__chart--pie"></div>
+        <table class="block__table table">
+          <thead>
+            <tr>
+              <td></td>
+              <td>Game</td>
+              <td>Achievements</td>
+              <td>Total hours</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="table__color"></span></td>
+              <td>Dota 2</td>
+              <td>100%</td>
+              <td>201.7h</td>
+            </tr>
+            <tr>
+              <td><span class="table__color"></span></td>
+              <td>The Witcher 3: Wild Hunt</td>
+              <td>60%</td>
+              <td>104.2</td>
+            </tr>
+            <tr>
+              <td><span class="table__color"></span></td>
+              <td>Sleeping Dogs</td>
+              <td>52%</td>
+              <td>49.2h</td>
+            </tr>
+            <tr>
+              <td><span class="table__color"></span></td>
+              <td>Tomb Raider</td>
+              <td>100%</td>
+              <td>17.7h</td>
+            </tr>
+            <tr>
+              <td><span class="table__color"></span></td>
+              <td>Armello</td>
+              <td>30%</td>
+              <td>27.1h</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
 </body>
 </html>

@@ -1,0 +1,61 @@
+@import url('./fonts.css');
+@import url('./dashboard.css');
+
+:root {
+  --white: #ffffff;
+  --gray-1: #e6e6e6;
+  --black: #262626;
+  --red: #ef8564;
+  --blue: #74b9f9;
+  --blue-shadow: #7abef969;
+
+  --border-s: 8px;
+  --border-m: 12px;
+  --border-l: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: Jersey, Arial, sans-serif;
+  line-height: 100%;
+}
+
+h1 {
+  margin-bottom: 1.75rem;
+  font-size: 4rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+h3 {
+  margin-bottom: 0.75rem;
+  font-size: 2.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
