@@ -1,0 +1,1 @@
+export const DEFAULT_COLOR_SCHEME = ['#74b9f9', '#8cc5fa', '#9bccfa', '#a7d2fa', '#b4d8fa']
