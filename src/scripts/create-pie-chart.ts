@@ -1,4 +1,4 @@
-import { DEFAULT_COLOR_SCHEME } from './constants.js'
+import { DEFAULT_COLOR_SCHEME_LIGHT } from './constants.js'
 import { getCircleX, getCircleY } from './utils.js'
 
 export default class PieChart {
@@ -16,7 +16,7 @@ export default class PieChart {
   constructor(options: PieChartOptions) {
     this.holder = document.querySelector(options.holder)
     this.source = options.source
-    this.colorScheme = options.colorScheme ?? DEFAULT_COLOR_SCHEME
+    this.colorScheme = options.colorScheme ?? DEFAULT_COLOR_SCHEME_LIGHT
     this.rotate = options.rotate ?? 0
     this.innerRadius = options.innerRadius ?? 0
     this.total = options.total ?? this._getTotal(options.data)
