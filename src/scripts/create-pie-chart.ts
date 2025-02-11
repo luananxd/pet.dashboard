@@ -23,27 +23,22 @@ export default class PieChart {
     this.data = this._createNormalizedData(options.data)
   }
 
-  _getTotal(data: PieChartDataItem[]) {
-    const values = data.map(item => {
-      return item.values.find(i => i.title === this.source)?.value
-    })
-    return values.reduce((sum, i) => {
-      return sum + i
+  _getTotal(data: number[]) {
+    return data.reduce((total, item) => {
+      return (total += item)
     }, 0)
   }
 
-  _createNormalizedData(data: PieChartDataItem[]) {
-    this._getTotal(data)
-    const _d = data.map((item, index) => {
-      const value =
-        item.values.find(i => i.title === this.source).value / this.total
-      const color =
-        this.colorScheme?.[index] ??
-        this.colorScheme[this.colorScheme.length - 1]
-
-      return { color, value }
+  _createNormalizedData(data: number[]) {
+    const total = this._getTotal(data)
+    const _data = data.map((item, index) => {
+      const colorIndex = Math.min(index, this.colorScheme.length - 1)
+      return {
+        value: item / total,
+        color: this.colorScheme[colorIndex],
+      }
     })
-    return _d
+    return _data.sort((a, b) => a.value - b.value)
   }
 
   _createSVG() {
@@ -170,11 +165,11 @@ export default class PieChart {
   }
 
   _render() {
-    let start = 0
+    let end = 360
     this.data.forEach(item => {
-      const end = start + 360 * item.value
-      this._drawSegment(start, end, item.color)
-      start = end
+      const start = Math.max(end - 360 * item.value, 0.01)
+      this._drawSegment(0.01, end, item.color)
+      end = start
     })
   }
 

@@ -9,6 +9,9 @@ interface PieChartOptions {
 }
 
 interface PieChartDataItem {
+  value: number
+  color: string
+}
   label: string
   values: {
     label: string
