@@ -1,6 +1,6 @@
 interface PieChartOptions {
   holder: string
-  data: PieChartDataItem[]
+  data: number[]
   source: string
   total?: number
   rotate?: number
@@ -12,10 +12,15 @@ interface PieChartDataItem {
   value: number
   color: string
 }
-  label: string
-  values: {
-    label: string
-    title: string
-    value: number
-  }[]
+
+interface LineChartOptions {
+  holder: string
+  data: LineChartData
+  keys?: string[]
+  colorScheme?: string[]
+  labels?: string[]
+}
+
+interface LineChartData {
+  [key: string]: number[]
 }

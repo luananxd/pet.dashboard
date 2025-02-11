@@ -1,4 +1,7 @@
 .dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   margin: 0 auto;
   padding: 40px 0;
   width: 1000px;
@@ -9,6 +12,7 @@
 .block {
   position: relative;
   padding: 20px;
+  background-color: var(--white);
   border-radius: var(--border-s);
   box-shadow: 0 0 10px 0 var(--blue-shadow);
   transform-origin: center center;
@@ -23,6 +27,11 @@
 .block__chart--pie {
   width: 200px;
   aspect-ratio: 1 / 1;
+}
+
+.block__chart--line {
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 .block__wrapper {
