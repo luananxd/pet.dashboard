@@ -21,5 +21,3 @@ const lineChart = new LineChart({
 
 pieChart.init()
 lineChart.init()
-
-console.log(lineChart)
