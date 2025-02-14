@@ -211,8 +211,6 @@ export default class LineChart {
       const x = groupInPixels * (_index + 1) - groupInPixels / 2 + this.padding
       const y = graphHeight + this.padding - itemValue
 
-      console.log(y)
-
       if (_index === 0) {
         d += `M${x} ${y} `
       } else {
@@ -221,12 +219,24 @@ export default class LineChart {
     })
 
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+    const animate = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'animate',
+    )
     const color = this.colorScheme[Math.min(index, this.colorScheme.length)]
+
+    animate.setAttribute('attributeName', 'stroke-dasharray')
+    animate.setAttribute('values', '0 9999; 9999 0')
+    animate.setAttribute('dur', '10s')
+
     path.setAttribute('d', d)
     path.setAttribute('stroke', color)
+    path.setAttribute('stroke-linecap', 'round')
+    path.setAttribute('stroke-linejoin', 'round')
     path.setAttribute('fill', 'transparent')
     path.setAttribute('stroke-width', '5')
 
+    path.append(animate)
     this.svg.append(path)
   }
 
