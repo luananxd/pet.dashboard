@@ -41,6 +41,64 @@ export default class PieChart {
     return _data.sort((a, b) => a.value - b.value)
   }
 
+  _calculateCircleStartPoint(angle: number) {
+    const cx = this.measuring.width / 2
+    const cy = this.measuring.height / 2
+
+    const x = getCircleX({
+      centerX: cx,
+      radius: this.radius,
+      degrees: angle,
+      rotate: this.rotate,
+    })
+    const y = getCircleY({
+      centerY: cy,
+      radius: this.radius,
+      degrees: angle,
+      rotate: this.rotate,
+    })
+
+    return [x, y]
+  }
+
+  _calculateCircleEndPoint(angle: number) {
+    const cx = this.measuring.width / 2
+    const cy = this.measuring.height / 2
+
+    const x = getCircleX({
+      centerX: cx,
+      radius: this.radius,
+      degrees: angle,
+      rotate: this.rotate,
+    })
+    const y = getCircleY({
+      centerY: cy,
+      radius: this.radius,
+      degrees: angle,
+      rotate: this.rotate,
+    })
+
+    return [x, y]
+  }
+
+  _getSegmentD = (startAngle: number, endAngle: number) => {
+    const cx = this.measuring.width / 2
+    const cy = this.measuring.height / 2
+    const arcLength = endAngle - startAngle
+    const [startX, startY] = this._calculateCircleStartPoint(startAngle)
+    const [endX, endY] = this._calculateCircleStartPoint(endAngle)
+
+    const d =
+      `M${cx} ${cy} ` +
+      `L${startX} ${startY} ` +
+      `A${this.radius} ${this.radius} 0 ${
+        arcLength > 180 ? 1 : 0
+      } 1 ${endX} ${endY} ` +
+      'Z'
+
+    return d
+  }
+
   _createSVG() {
     if (!this.holder) {
       new Error('Не удалось найти HTML-элемент')
@@ -120,48 +178,31 @@ export default class PieChart {
       'http://www.w3.org/2000/svg',
       'path',
     )
-
-    const cx = this.measuring.width / 2
-    const cy = this.measuring.height / 2
-    const length = endAngle - startAngle
-    const startX = getCircleX({
-      centerX: cx,
-      radius: this.radius,
-      degrees: startAngle,
-      rotate: this.rotate,
-    })
-    const startY = getCircleY({
-      centerY: cy,
-      radius: this.radius,
-      degrees: startAngle,
-      rotate: this.rotate,
-    })
-    const endX = getCircleX({
-      centerX: cx,
-      radius: this.radius,
-      degrees: endAngle,
-      rotate: this.rotate,
-    })
-    const endY = getCircleY({
-      centerY: cy,
-      radius: this.radius,
-      degrees: endAngle,
-      rotate: this.rotate,
-    })
-
-    const d =
-      `M${cx} ${cy} ` +
-      `L${startX} ${startY} ` +
-      `A${this.radius} ${this.radius} 0 ${
-        length > 180 ? 1 : 0
-      } 1 ${endX} ${endY} ` +
-      'Z'
-
-    segment.setAttribute('d', d)
     segment.setAttribute('fill', color)
     segment.setAttribute('mask', 'url(#hole)')
 
     this.svg.append(segment)
+
+    let frameId: any = null
+
+    const animateSegment = (angle: number) => {
+      const maxDegrees = endAngle
+      angle += 4
+
+      if (angle <= maxDegrees) {
+        const d = this._getSegmentD(startAngle, angle)
+        segment.setAttribute('d', d)
+        console.log(angle)
+      } else {
+        const d = this._getSegmentD(startAngle, maxDegrees)
+        segment.setAttribute('d', d)
+        cancelAnimationFrame(frameId)
+      }
+
+      requestAnimationFrame(() => animateSegment(angle))
+    }
+
+    frameId = requestAnimationFrame(() => animateSegment(0))
   }
 
   _render() {
